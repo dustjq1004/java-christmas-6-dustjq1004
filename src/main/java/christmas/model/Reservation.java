@@ -59,6 +59,15 @@ public class Reservation {
     public BadgeEvent getBadge() {
         return BadgeEvent.getEventBadgeIfPrice(getTotalPrice());
     }
+
+    public int getDiscountDetailsBy(String discountName) {
+        Integer price = discountDetails.get(discountName);
+        if (price == null) {
+            return 0;
+        }
+        return price;
+    }
+
 }
 
 
