@@ -38,6 +38,11 @@ public class Reservation {
     public int countFoodType(FoodType foodType) {
         return (int) foods.stream().filter((food) -> food.getType() == foodType).count();
     }
+
+    public boolean hasStar() {
+        EventCalendar eventCalendar = new EventCalendar();
+        return eventCalendar.hasStar(day);
+    }
 }
 
 
