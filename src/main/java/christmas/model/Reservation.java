@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.service.event.BadgeEvent;
 import java.time.DayOfWeek;
 import java.util.HashMap;
 import java.util.List;
@@ -9,16 +10,16 @@ public class Reservation {
 
     private final List<Menu> foods;
     private final int day;
-    private final Map<String, Integer> discountType;
+    private final Map<String, Integer> discountDetails;
 
     public Reservation(List<Menu> foods, int day) {
         this.foods = foods;
         this.day = day;
-        discountType = new HashMap<>();
+        discountDetails = new HashMap<>();
     }
 
     public void addDiscountType(String name, int price) {
-        discountType.put(name, price);
+        discountDetails.put(name, price);
     }
 
     public boolean isContainDayRange(final int startDay, final int endDay) {
@@ -42,6 +43,21 @@ public class Reservation {
     public boolean hasStar() {
         EventCalendar eventCalendar = new EventCalendar();
         return eventCalendar.hasStar(day);
+    }
+
+    public int getTotalPrice() {
+        return foods.stream().mapToInt((food) -> food.getPrice()).sum();
+    }
+
+    public int getTotalDiscountedPrice() {
+        return discountDetails.values()
+                .stream()
+                .mapToInt((price) -> price)
+                .sum();
+    }
+
+    public BadgeEvent getBadge() {
+        return BadgeEvent.getEventBadgeIfPrice(getTotalPrice());
     }
 }
 
