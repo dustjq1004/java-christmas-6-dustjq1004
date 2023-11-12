@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.service.policy;
 
 import christmas.model.FoodType;
 import christmas.model.Reservation;

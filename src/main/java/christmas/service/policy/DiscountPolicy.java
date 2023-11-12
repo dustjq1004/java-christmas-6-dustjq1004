@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.service.policy;
 
 import christmas.model.Reservation;
 
