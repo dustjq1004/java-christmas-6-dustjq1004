@@ -8,13 +8,11 @@ import java.util.Map;
 public class Reservation {
 
     private final List<Menu> foods;
-    private final Money money;
     private final int day;
     private final Map<String, Integer> discountType;
 
-    public Reservation(List<Menu> foods, Money money, int day) {
+    public Reservation(List<Menu> foods, int day) {
         this.foods = foods;
-        this.money = money;
         this.day = day;
         discountType = new HashMap<>();
     }
@@ -40,7 +38,6 @@ public class Reservation {
     public int countFoodType(FoodType foodType) {
         return (int) foods.stream().filter((food) -> food.getType() == foodType).count();
     }
-
 }
 
 
