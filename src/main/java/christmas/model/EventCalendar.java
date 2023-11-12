@@ -9,7 +9,7 @@ import java.util.List;
 public class EventCalendar {
 
     private static final List hasStarDays = List.of(3, 10, 17, 24, 25, 31);
-    private static final int EVENT_YEAR = 12;
+    private static final int EVENT_YEAR = 2023;
     private static final Month EVENT_MONTH = Month.DECEMBER;
     private static final int CHRISTMAS_DAY = 25;
 
