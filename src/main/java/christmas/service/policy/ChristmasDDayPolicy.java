@@ -19,6 +19,6 @@ public class ChristmasDDayPolicy implements DiscountPolicy {
     }
 
     private int calculateDiscountPrice(final int dDay) {
-        return baseDiscountPrice + dayPrice * dDay;
+        return baseDiscountPrice + dayPrice * (endDay - dDay);
     }
 }
