@@ -4,7 +4,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import christmas.model.Menu;
 import christmas.model.Reservation;
-import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ class ChristmasDDayPolicyTest {
     @DisplayName("예약한 날짜는 day이고 할인 금액은 discoutnPrice이다.")
     void ChristmasDDayPolicyTest1(int day, int discountPrice) {
         DiscountPolicy discountPolicy = new ChristmasDDayPolicy();
-        List<Menu> foods = List.of(Menu.CHRISTMAS_PASTA, Menu.BUTTON_MUSHROOM_SOUP);
+        Map<Menu, Integer> foods = Map.of(Menu.CHRISTMAS_PASTA, 1, Menu.BUTTON_MUSHROOM_SOUP, 1);
         Reservation reservation = new Reservation(foods, day);
 
         //when
