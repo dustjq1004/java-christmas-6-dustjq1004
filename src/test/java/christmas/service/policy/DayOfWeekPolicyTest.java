@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.model.Menu;
 import christmas.model.Reservation;
-import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ class DayOfWeekPolicyTest {
     @Test
     @DisplayName("평일 예약을 하여 디저트 할인을 받는다.")
     void getDiscountDessertMenu() {
-        List<Menu> foods = List.of(Menu.CHOCO_CAKE, Menu.CHRISTMAS_PASTA, Menu.CHOCO_CAKE);
+        Map<Menu, Integer> foods = Map.of(Menu.CHOCO_CAKE, 2, Menu.CHRISTMAS_PASTA, 1);
         Reservation reservation = new Reservation(foods, 4);
         DiscountPolicy policy = new DayOfWeekPolicy();
 
@@ -28,7 +28,7 @@ class DayOfWeekPolicyTest {
     @Test
     @DisplayName("주말 예약을 하여 메인 메뉴 할인을 받는다.")
     void getDiscountMainMenu() {
-        List<Menu> foods = List.of(Menu.CHOCO_CAKE, Menu.CHRISTMAS_PASTA, Menu.CHOCO_CAKE);
+        Map<Menu, Integer> foods = Map.of(Menu.CHOCO_CAKE, 2, Menu.CHRISTMAS_PASTA, 1);
         Reservation reservation = new Reservation(foods, 23);
         DiscountPolicy policy = new DayOfWeekPolicy();
 
