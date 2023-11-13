@@ -24,4 +24,8 @@ public enum BadgeEvent {
         }
         return selectedBadge;
     }
+
+    public String getName() {
+        return name;
+    }
 }
