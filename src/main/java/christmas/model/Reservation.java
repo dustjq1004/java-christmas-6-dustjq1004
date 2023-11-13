@@ -1,21 +1,37 @@
 package christmas.model;
 
+import christmas.dto.ReservationDto;
 import christmas.service.event.BadgeEvent;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Reservation {
 
-    private final List<Menu> foods;
+    private Map<Menu, Integer> orders;
     private final int day;
     private final Map<String, Integer> discountDetails;
+    private final List<String> giveAways;
 
-    public Reservation(List<Menu> foods, int day) {
-        this.foods = foods;
+    public Reservation(Map<Menu, Integer> orders, int day) {
+        this.orders = orders;
         this.day = day;
         discountDetails = new HashMap<>();
+        giveAways = new ArrayList<>();
+    }
+
+    public ReservationDto toReservationDto(Reservation reservation) {
+        ReservationDto reservationDto = new ReservationDto();
+        reservationDto.setOrders(this.orders);
+        reservationDto.setDiscountDetails(this.discountDetails);
+        reservationDto.setTotOrderAmount(getTotalPrice());
+        reservationDto.setExpectedAmount(getTotalPrice() - getTotalDiscountedPrice());
+        reservationDto.setTotDiscountAmount(getTotalDiscountedPrice());
+        reservationDto.setBadge(getBadge());
+        reservationDto.setGiveAway(giveAways);
+        return reservationDto;
     }
 
     public void addDiscountType(String name, int price) {
@@ -37,7 +53,10 @@ public class Reservation {
     }
 
     public int countFoodType(FoodType foodType) {
-        return (int) foods.stream().filter((food) -> food.getType() == foodType).count();
+        return orders.keySet().stream()
+                .filter((food) -> food.getType() == foodType)
+                .mapToInt((food) -> orders.get(food))
+                .sum();
     }
 
     public boolean hasStar() {
@@ -46,7 +65,9 @@ public class Reservation {
     }
 
     public int getTotalPrice() {
-        return foods.stream().mapToInt((food) -> food.getPrice()).sum();
+        return orders.keySet().stream().mapToInt((food) ->
+                food.getPrice() * orders.get(food)
+        ).sum();
     }
 
     public int getTotalDiscountedPrice() {
@@ -68,6 +89,7 @@ public class Reservation {
         return price;
     }
 
+    public void addGiveAway(String name) {
+        giveAways.add(name);
+    }
 }
-
-
