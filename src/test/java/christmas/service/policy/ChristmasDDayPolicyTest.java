@@ -2,9 +2,9 @@ package christmas.service.policy;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import christmas.model.Menu;
+import christmas.model.PreOrder;
 import christmas.model.Reservation;
-import java.util.Map;
+import christmas.utils.OrderGenerator;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,11 +19,12 @@ class ChristmasDDayPolicyTest {
     @DisplayName("예약한 날짜는 day이고 할인 금액은 discoutnPrice이다.")
     void ChristmasDDayPolicyTest1(int day, int discountPrice) {
         DiscountPolicy discountPolicy = new ChristmasDDayPolicy();
-        Map<Menu, Integer> foods = Map.of(Menu.CHRISTMAS_PASTA, 1, Menu.BUTTON_MUSHROOM_SOUP, 1);
-        Reservation reservation = new Reservation(foods, day);
+        String client = "크리스마스파스타-1,양송이수프-1";
+        PreOrder preOrder = new PreOrder(day, OrderGenerator.generateOrder(client));
+        Reservation reservation = new Reservation();
 
         //when
-        discountPolicy.calculatePrice(reservation);
+        discountPolicy.calculatePrice(preOrder, reservation);
         int 크리스마스_디데이_할인 = reservation.getDiscountDetailsBy("크리스마스 디데이 할인");
 
         //then
