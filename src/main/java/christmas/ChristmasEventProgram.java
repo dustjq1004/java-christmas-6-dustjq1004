@@ -2,12 +2,16 @@ package christmas;
 
 import christmas.controller.OrderController;
 import christmas.dto.ReservationConfirm;
+import christmas.exception.CustomIllegalArgumentException;
+import christmas.exception.CustomNumberFormatException;
 import christmas.model.Order;
 import christmas.model.PreOrder;
 import christmas.utils.OrderGenerator;
 import christmas.utils.StringConverter;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 public class ChristmasEventProgram {
 
@@ -23,21 +27,37 @@ public class ChristmasEventProgram {
 
     public void run() {
         outputView.printNotification();
-        int clientReservationDate = getClientReservationDate();
-        Order clientOrder = getClientOrder();
+        int clientReservationDate = callInputView(this::getClientReservationDate);
+        Order clientOrder = callInputView(this::getClientOrder);
         PreOrder preOrder = new PreOrder(clientReservationDate, clientOrder);
         ReservationConfirm reservationConfirm = orderController.reserveOrder(preOrder);
         printResultReservation(reservationConfirm);
     }
 
-    private Order getClientOrder() {
-        Order clientOrder = OrderGenerator.generateOrder(inputView.readOrder());
-        return clientOrder;
+    private <T> T callInputView(Supplier<Optional<T>> methodInput) {
+        Optional<T> result;
+        do {
+            result = methodInput.get();
+        } while (result.isEmpty());
+        return result.get();
     }
 
-    private int getClientReservationDate() {
-        int clientReservationDate = StringConverter.convertToInteger(inputView.readDate());
-        return clientReservationDate;
+    private Optional<Order> getClientOrder() {
+        try {
+            return Optional.of(OrderGenerator.generateOrder(inputView.readOrder()));
+        } catch (CustomIllegalArgumentException | CustomNumberFormatException e) {
+            System.out.println(e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    private Optional<Integer> getClientReservationDate() {
+        try {
+            return Optional.of(StringConverter.convertToInteger(inputView.readDate()));
+        } catch (CustomIllegalArgumentException | CustomNumberFormatException e) {
+            System.out.println(e.getMessage());
+            return Optional.empty();
+        }
     }
 
     private void printResultReservation(ReservationConfirm reservationConfirm) {

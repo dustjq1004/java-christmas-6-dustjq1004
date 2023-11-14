@@ -1,5 +1,7 @@
 package christmas.model;
 
+import christmas.exception.CustomIllegalArgumentException;
+import christmas.exception.ErrorMessage;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,19 +29,19 @@ public class Order {
                 .filter((orderedFood) -> !orderedFood.compareTo(FoodType.DRINK))
                 .findFirst();
         if (first.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateCount(List<OrderedFood> order) {
         if (sumOrderCount(order) > LIMIT_COUNT) {
-            throw new IllegalArgumentException();
+            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateDuplicate(List<OrderedFood> order) {
         if (order.size() != order.stream().distinct().count()) {
-            throw new IllegalArgumentException();
+            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 

@@ -25,8 +25,8 @@ public class EventCalendar {
     }
 
     public int getDDayChristmas(final int day) {
-        final int PLUS = 1;
+        final int plus = 1;
         return (int) ChronoUnit.DAYS.between(LocalDate.of(EVENT_YEAR, EVENT_MONTH, day)
-                , LocalDate.of(EVENT_YEAR, EVENT_MONTH, CHRISTMAS_DAY)) + PLUS;
+                , LocalDate.of(EVENT_YEAR, EVENT_MONTH, CHRISTMAS_DAY)) + plus;
     }
 }
