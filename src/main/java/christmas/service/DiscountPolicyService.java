@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.model.PreOrder;
 import christmas.model.Reservation;
 import christmas.service.event.GiveAwayEvent;
 import christmas.service.policy.ChristmasDDayPolicy;
@@ -23,10 +24,10 @@ public class DiscountPolicyService {
         this.giveAwayEvent = new GiveAwayEvent();
     }
 
-    public void calculateDiscountPriceByPolicy(Reservation reservation) {
+    public void calculateDiscountPriceByPolicy(PreOrder preOrder, Reservation reservation) {
         discountPolicies.forEach(discountPolicy -> {
-            discountPolicy.calculatePrice(reservation);
+            discountPolicy.calculatePrice(preOrder, reservation);
         });
-        giveAwayEvent.receiveGiveAwayIfConfirm(reservation);
+        giveAwayEvent.receiveGiveAwayIfConfirm(preOrder, reservation);
     }
 }
