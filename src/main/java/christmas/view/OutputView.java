@@ -1,6 +1,10 @@
 package christmas.view;
 
 import christmas.dto.ReservationConfirm;
+import christmas.model.Menu;
+import christmas.service.event.BadgeEvent;
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -16,61 +20,62 @@ public class OutputView {
         System.out.println("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         System.out.println();
 
+        printOrderedMenus(reservationConfirm.order());
+        printTotalOrderAmount(reservationConfirm.totDiscountAmount());
+        printGiveaways(reservationConfirm.giveAway());
+        System.out.println();
+        printDiscountDetails(reservationConfirm.discountDetails());
+        System.out.println();
+        printDiscountAmount(reservationConfirm.totDiscountAmount());
+        printExpectedAmount(reservationConfirm.expectedAmount());
+        printBadge(reservationConfirm.badge());
+    }
+
+    private void printOrderedMenus(Map<Menu, Integer> order) {
         System.out.println("<주문 메뉴>");
-        reservationConfirm.order().forEach((food, count) -> {
+        order.forEach((food, count) -> {
             System.out.println(String.format("%s %d개", food.getName(), count));
         });
         System.out.println();
+    }
+
+    private void printTotalOrderAmount(int totOrderAmount) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(String.format("%,d원\n", reservationConfirm.totOrderAmount()));
+        System.out.println(String.format("%,d원\n", totOrderAmount));
+    }
+
+    private void printGiveaways(List<String> givenAway) {
         System.out.println("<증정 메뉴>");
-        reservationConfirm.giveAway().forEach((giveAway) -> System.out.println(String.format("%s 1개", giveAway)));
-        System.out.println();
+        if (givenAway.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+        givenAway.forEach((giveAway) -> System.out.println(String.format("%s 1개", giveAway)));
+    }
+
+    private void printDiscountDetails(Map<String, Integer> discountDetails) {
         System.out.println("<혜택 내역>");
-        reservationConfirm.discountDetails().forEach((discountName, amount) ->
-                System.out.println(String.format("%s: -%,d원", discountName, amount)
+        if (discountDetails.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+        discountDetails.forEach((discountName, amount) ->
+                System.out.println(String.format("%s: %,d원", discountName, amount)
                 ));
-        System.out.println();
+    }
+
+    private void printDiscountAmount(int totDiscountAmount) {
         System.out.println("<총혜택 금액>");
-        System.out.println(String.format("-%,d원\n", reservationConfirm.totDiscountAmount()));
+        System.out.println(String.format("%,d원\n", totDiscountAmount));
+    }
+
+    private void printExpectedAmount(int expectedAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(String.format("%,d원\n", reservationConfirm.expectedAmount()));
+        System.out.println(String.format("%,d원\n", expectedAmount));
+    }
+
+    private void printBadge(BadgeEvent badge) {
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(reservationConfirm.badge().getName());
+        System.out.println(badge.getName());
     }
 }
-/*
-안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.
-12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)
-3
-주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)
-티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1
-12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!
-
-<주문 메뉴>
-티본스테이크 1개
-바비큐립 1개
-초코케이크 2개
-제로콜라 1개
-
-<할인 전 총주문 금액>
-142,000원
-
-<증정 메뉴>
-샴페인 1개
-
-<혜택 내역>
-크리스마스 디데이 할인: -1,200원
-평일 할인: -4,046원
-특별 할인: -1,000원
-증정 이벤트: -25,000원
-
-<총혜택 금액>
--31,246원
-
-<할인 후 예상 결제 금액>
-135,754원
-
-<12월 이벤트 배지>
-산타
-* */
