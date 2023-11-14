@@ -2,6 +2,7 @@ package christmas.model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Order {
@@ -18,6 +19,16 @@ public class Order {
     private void validate(List<OrderedFood> order) {
         validateDuplicate(order);
         validateCount(order);
+        validateDrink(order);
+    }
+
+    private void validateDrink(List<OrderedFood> order) {
+        Optional<OrderedFood> first = order.stream()
+                .filter((orderedFood) -> !orderedFood.compareTo(FoodType.DRINK))
+                .findFirst();
+        if (first.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateCount(List<OrderedFood> order) {
