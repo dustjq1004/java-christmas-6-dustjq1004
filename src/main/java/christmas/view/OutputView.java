@@ -1,6 +1,6 @@
 package christmas.view;
 
-import christmas.dto.ReservationDto;
+import christmas.dto.ReservationConfirm;
 
 public class OutputView {
 
@@ -12,31 +12,31 @@ public class OutputView {
                 + "(e.g. 시저샐러드-1, 티본스테이크-1, 크리스마스파스타-1, 제로콜라-3, 아이스크림-1의 총개수는 7개)\n");
     }
 
-    public void printReservationConfirm(ReservationDto reservationDto) {
+    public void printReservationConfirm(ReservationConfirm reservationConfirm) {
         System.out.println("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         System.out.println();
 
         System.out.println("<주문 메뉴>");
-        reservationDto.getOrders().forEach((food, count) -> {
+        reservationConfirm.order().forEach((food, count) -> {
             System.out.println(String.format("%s %d개", food.getName(), count));
         });
         System.out.println();
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(String.format("%,d원\n", reservationDto.getTotOrderAmount()));
+        System.out.println(String.format("%,d원\n", reservationConfirm.totOrderAmount()));
         System.out.println("<증정 메뉴>");
-        reservationDto.getGiveAway().forEach((giveAway) -> System.out.println(String.format("%s 1개", giveAway)));
+        reservationConfirm.giveAway().forEach((giveAway) -> System.out.println(String.format("%s 1개", giveAway)));
         System.out.println();
         System.out.println("<혜택 내역>");
-        reservationDto.getDiscountDetails().forEach((discountName, amount) ->
+        reservationConfirm.discountDetails().forEach((discountName, amount) ->
                 System.out.println(String.format("%s: -%,d원", discountName, amount)
                 ));
         System.out.println();
         System.out.println("<총혜택 금액>");
-        System.out.println(String.format("-%,d원\n", reservationDto.getTotDiscountAmount()));
+        System.out.println(String.format("-%,d원\n", reservationConfirm.totDiscountAmount()));
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(String.format("%,d원\n", reservationDto.getExpectedAmount()));
+        System.out.println(String.format("%,d원\n", reservationConfirm.expectedAmount()));
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(reservationDto.getBadge().getName());
+        System.out.println(reservationConfirm.badge().getName());
     }
 }
 /*

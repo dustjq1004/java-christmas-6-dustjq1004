@@ -1,13 +1,13 @@
 package christmas;
 
 import christmas.controller.OrderController;
-import christmas.dto.PreOrderDto;
-import christmas.dto.ReservationDto;
-import christmas.model.Menu;
+import christmas.dto.ReservationConfirm;
+import christmas.model.Order;
+import christmas.model.PreOrder;
+import christmas.utils.OrderGenerator;
 import christmas.utils.StringConverter;
 import christmas.view.InputView;
 import christmas.view.OutputView;
-import java.util.Map;
 
 public class ChristmasEventProgram {
 
@@ -21,24 +21,26 @@ public class ChristmasEventProgram {
         this.orderController = orderController;
     }
 
-    public void start() {
+    public void run() {
         outputView.printNotification();
-        int clientReservationDate = StringConverter.convertToInteger(getClientReservationDate());
-        Map<Menu, Integer> clientOrder = StringConverter.convertOrderToMap(getClientOrder());
-        PreOrderDto preOrderDto = new PreOrderDto(clientReservationDate, clientOrder);
-        ReservationDto reservationDto = orderController.reserveOrder(preOrderDto);
-        printResultReservation(reservationDto);
+        int clientReservationDate = getClientReservationDate();
+        Order clientOrder = getClientOrder();
+        PreOrder preOrder = new PreOrder(clientReservationDate, clientOrder);
+        ReservationConfirm reservationConfirm = orderController.reserveOrder(preOrder);
+        printResultReservation(reservationConfirm);
     }
 
-    private String getClientOrder() {
-        return inputView.readOrder();
+    private Order getClientOrder() {
+        Order clientOrder = OrderGenerator.generateOrder(inputView.readOrder());
+        return clientOrder;
     }
 
-    private String getClientReservationDate() {
-        return inputView.readDate();
+    private int getClientReservationDate() {
+        int clientReservationDate = StringConverter.convertToInteger(inputView.readDate());
+        return clientReservationDate;
     }
 
-    private void printResultReservation(ReservationDto reservationDto) {
-        outputView.printReservationConfirm(reservationDto);
+    private void printResultReservation(ReservationConfirm reservationConfirm) {
+        outputView.printReservationConfirm(reservationConfirm);
     }
 }

@@ -1,7 +1,7 @@
 package christmas.controller;
 
-import christmas.dto.PreOrderDto;
-import christmas.dto.ReservationDto;
+import christmas.dto.ReservationConfirm;
+import christmas.model.PreOrder;
 import christmas.model.Reservation;
 import christmas.service.DiscountPolicyService;
 
@@ -13,10 +13,20 @@ public class OrderController {
         this.discountPolicyService = discountPolicyService;
     }
 
-    public ReservationDto reserveOrder(PreOrderDto preOrderDto) {
-        Reservation reservation = new Reservation(preOrderDto.getOrders(), preOrderDto.getDay());
-        discountPolicyService.calculateDiscountPriceByPolicy(reservation);
-        ReservationDto reservationDto = reservation.toReservationDto(reservation);
-        return reservationDto;
+    public ReservationConfirm reserveOrder(PreOrder preOrder) {
+        Reservation reservation = new Reservation();
+        discountPolicyService.calculateDiscountPriceByPolicy(preOrder, reservation);
+        int totalOrderPrice = preOrder.getTotalOrderPrice();
+        int totalDiscountedPrice = reservation.getTotalDiscountedPrice();
+        int expectedAmount = totalOrderPrice - totalDiscountedPrice;
+        return new ReservationConfirm(
+                preOrder.getOrederMap(),
+                totalOrderPrice,
+                totalDiscountedPrice,
+                expectedAmount,
+                reservation.getDiscountDetails(),
+                reservation.getGiveAways(),
+                reservation.getBadge()
+        );
     }
 }

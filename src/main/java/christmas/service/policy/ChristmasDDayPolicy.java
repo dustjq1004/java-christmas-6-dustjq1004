@@ -1,5 +1,6 @@
 package christmas.service.policy;
 
+import christmas.model.PreOrder;
 import christmas.model.Reservation;
 
 public class ChristmasDDayPolicy implements DiscountPolicy {
@@ -10,9 +11,9 @@ public class ChristmasDDayPolicy implements DiscountPolicy {
     private int dayPrice = 100;
 
     @Override
-    public Reservation calculatePrice(Reservation reservation) {
-        if (reservation.isContainDayRange(startDay, endDay)) {
-            int discountPrice = calculateDiscountPrice(reservation.getChristmasDday());
+    public Reservation calculatePrice(PreOrder preOrder, Reservation reservation) {
+        if (preOrder.isContainDayRange(startDay, endDay)) {
+            int discountPrice = calculateDiscountPrice(preOrder.getChristmasDday());
             reservation.addDiscountType("크리스마스 디데이 할인", discountPrice);
         }
         return reservation;

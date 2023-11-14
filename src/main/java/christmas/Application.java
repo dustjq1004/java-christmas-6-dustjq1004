@@ -10,6 +10,6 @@ public class Application {
         ChristmasEventProgram christmasEventProgram = new ChristmasEventProgram(
                 new InputView(), new OutputView(), new OrderController(new DiscountPolicyService())
         );
-        christmasEventProgram.start();
+        christmasEventProgram.run();
     }
 }

@@ -1,6 +1,7 @@
 package christmas.service.policy;
 
 import christmas.model.FoodType;
+import christmas.model.PreOrder;
 import christmas.model.Reservation;
 import java.time.DayOfWeek;
 import java.util.List;
@@ -12,12 +13,12 @@ public class DayOfWeekPolicy implements DiscountPolicy {
     private int baseDiscountPrice = 2023;
 
     @Override
-    public Reservation calculatePrice(Reservation reservation) {
-        if (!reservation.isContainDayRange(startDay, endDay)) {
+    public Reservation calculatePrice(PreOrder preOrder, Reservation reservation) {
+        if (!preOrder.isContainDayRange(startDay, endDay)) {
             return reservation;
         }
-        FoodType foodType = selectFoodTypeIfDayOfWeek(reservation.getDayofWeek());
-        int count = reservation.countFoodType(foodType);
+        FoodType foodType = selectFoodTypeIfDayOfWeek(preOrder.getDayofWeek());
+        int count = preOrder.getTotalCountOfFoodType(foodType);
         int discountPrice = baseDiscountPrice * count;
 
         if (foodType == FoodType.MAIN) {
