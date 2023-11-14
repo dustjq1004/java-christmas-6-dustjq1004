@@ -12,6 +12,8 @@ import java.util.List;
 
 public class DiscountPolicyService {
 
+    private static final int APPLIED_MIN_AMOUNT = 10_000;
+
     private final List<DiscountPolicy> discountPolicies;
     private final GiveAwayEvent giveAwayEvent;
 
@@ -25,6 +27,9 @@ public class DiscountPolicyService {
     }
 
     public void calculateDiscountPriceByPolicy(PreOrder preOrder, Reservation reservation) {
+        if (preOrder.getTotalOrderPrice() < APPLIED_MIN_AMOUNT) {
+            return;
+        }
         discountPolicies.forEach(discountPolicy -> {
             discountPolicy.calculatePrice(preOrder, reservation);
         });
