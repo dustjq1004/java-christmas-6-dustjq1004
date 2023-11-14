@@ -12,7 +12,7 @@ public class GiveAwayEvent {
 
     public void receiveGiveAwayIfConfirm(PreOrder preOrder, Reservation reservation) {
         if (confirmGiveAwayEvent(preOrder, reservation)) {
-            reservation.addDiscountType("증정 이벤트", GIFT.getPrice());
+            reservation.addDiscountType("증정 이벤트", -GIFT.getPrice());
             reservation.addGiveAway(GIFT.getName());
         }
     }

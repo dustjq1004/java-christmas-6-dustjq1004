@@ -22,10 +22,10 @@ public class DayOfWeekPolicy implements DiscountPolicy {
         int discountPrice = baseDiscountPrice * count;
 
         if (foodType == FoodType.MAIN) {
-            reservation.addDiscountType("주말 할인", discountPrice);
+            reservation.addDiscountType("주말 할인", -discountPrice);
             return reservation;
         }
-        reservation.addDiscountType("평일 할인", discountPrice);
+        reservation.addDiscountType("평일 할인", -discountPrice);
         return reservation;
     }
 

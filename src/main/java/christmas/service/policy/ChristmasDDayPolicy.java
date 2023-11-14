@@ -14,7 +14,7 @@ public class ChristmasDDayPolicy implements DiscountPolicy {
     public Reservation calculatePrice(PreOrder preOrder, Reservation reservation) {
         if (preOrder.isContainDayRange(startDay, endDay)) {
             int discountPrice = calculateDiscountPrice(preOrder.getChristmasDday());
-            reservation.addDiscountType("크리스마스 디데이 할인", discountPrice);
+            reservation.addDiscountType("크리스마스 디데이 할인", -discountPrice);
         }
         return reservation;
     }

@@ -18,7 +18,7 @@ public class OrderController {
         discountPolicyService.calculateDiscountPriceByPolicy(preOrder, reservation);
         int totalOrderPrice = preOrder.getTotalOrderPrice();
         int totalDiscountedPrice = reservation.getTotalDiscountedPrice();
-        int expectedAmount = totalOrderPrice - totalDiscountedPrice;
+        int expectedAmount = totalOrderPrice + totalDiscountedPrice;
         return new ReservationConfirm(
                 preOrder.getOrederMap(),
                 totalOrderPrice,

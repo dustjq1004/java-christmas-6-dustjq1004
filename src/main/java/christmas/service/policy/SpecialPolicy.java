@@ -12,7 +12,7 @@ public class SpecialPolicy implements DiscountPolicy {
     @Override
     public Reservation calculatePrice(PreOrder preOrder, Reservation reservation) {
         if (preOrder.hasStar() && preOrder.isContainDayRange(startDay, endDay)) {
-            reservation.addDiscountType("특별 할인", baseDiscountPrice);
+            reservation.addDiscountType("특별 할인", -baseDiscountPrice);
         }
         return reservation;
     }
