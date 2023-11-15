@@ -12,7 +12,7 @@ public class OrderGenerator {
     private static final String DELIMITER_COMMA = ",";
     private static final String DELIMITER_DASH = "-";
 
-    public static Order generateOrder(String target) {
+    public static Order generateOrder(final String target) {
         try {
             List<OrderedFood> order = new ArrayList<>();
             for (String orderedFood : target.split(DELIMITER_COMMA)) {

@@ -9,7 +9,7 @@ public class OrderedFood {
     private final Menu menu;
     private final int count;
 
-    public OrderedFood(Menu menu, int count) {
+    public OrderedFood(final Menu menu, final int count) {
         validation(menu, count);
         this.menu = menu;
         this.count = count;
@@ -21,11 +21,11 @@ public class OrderedFood {
         }
     }
 
-    public boolean compareTo(Menu menu) {
+    public boolean compareTo(final Menu menu) {
         return this.menu == menu;
     }
 
-    public boolean compareTo(FoodType foodType) {
+    public boolean compareTo(final FoodType foodType) {
         return this.menu.getType() == foodType;
     }
 

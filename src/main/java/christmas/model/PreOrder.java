@@ -9,13 +9,13 @@ public class PreOrder {
     private final Order order;
     EventCalendar eventCalendar;
 
-    public PreOrder(int day, Order order) {
+    public PreOrder(final int day, final Order order) {
         this.day = day;
         this.order = order;
         this.eventCalendar = new EventCalendar();
     }
 
-    public int getTotalCountOfFoodType(FoodType foodType) {
+    public int getTotalCountOfFoodType(final FoodType foodType) {
         return order.countFoodType(foodType);
     }
 

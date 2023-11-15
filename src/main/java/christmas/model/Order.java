@@ -14,7 +14,7 @@ public class Order {
 
     private final List<OrderedFood> order;
 
-    public Order(List<OrderedFood> order) {
+    public Order(final List<OrderedFood> order) {
         validate(order);
         this.order = order;
     }
@@ -46,11 +46,11 @@ public class Order {
         }
     }
 
-    private int sumOrderCount(List<OrderedFood> order) {
+    private int sumOrderCount(final List<OrderedFood> order) {
         return order.stream().mapToInt(orderedFood -> orderedFood.getCount()).sum();
     }
 
-    public int countFoodType(FoodType foodType) {
+    public int countFoodType(final FoodType foodType) {
         return order.stream()
                 .filter((food) -> food.compareTo(foodType))
                 .mapToInt((food) -> food.getCount())

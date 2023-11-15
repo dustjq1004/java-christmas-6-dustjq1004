@@ -13,9 +13,6 @@ public class EventCalendar {
     private static final Month EVENT_MONTH = Month.DECEMBER;
     private static final int CHRISTMAS_DAY = 25;
 
-    public EventCalendar() {
-    }
-
     public DayOfWeek getDayOfWeek(final int day) {
         return LocalDate.of(EVENT_YEAR, EVENT_MONTH, day).getDayOfWeek();
     }

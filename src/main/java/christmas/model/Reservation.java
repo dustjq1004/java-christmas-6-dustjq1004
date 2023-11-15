@@ -18,7 +18,7 @@ public class Reservation {
         this.giveAways = new ArrayList<>();
     }
 
-    public void addDiscountType(String name, int price) {
+    public void addDiscountType(final String name, final int price) {
         discountDetails.put(name, price);
     }
 
@@ -33,7 +33,7 @@ public class Reservation {
         return BadgeEvent.getEventBadgeIfPrice(getTotalDiscountedPrice());
     }
 
-    public int getDiscountDetailsBy(String discountName) {
+    public int getDiscountDetailsBy(final String discountName) {
         final Integer price = discountDetails.get(discountName);
         if (price == null) {
             return PRICE_ZERO;
@@ -41,7 +41,7 @@ public class Reservation {
         return price.intValue();
     }
 
-    public void addGiveAway(String name) {
+    public void addGiveAway(final String name) {
         giveAways.add(name);
     }
 

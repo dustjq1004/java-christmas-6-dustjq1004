@@ -10,7 +10,7 @@ public enum BadgeEvent {
     private String name;
     private int amount;
 
-    BadgeEvent(String name, int amount) {
+    BadgeEvent(final String name, final int amount) {
         this.name = name;
         this.amount = amount;
     }

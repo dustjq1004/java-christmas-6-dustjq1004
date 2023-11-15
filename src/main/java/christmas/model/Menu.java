@@ -25,13 +25,13 @@ public enum Menu {
     private String name;
     private int price;
 
-    Menu(FoodType type, String name, int price) {
+    Menu(final FoodType type, final String name, final int price) {
         this.type = type;
         this.name = name;
         this.price = price;
     }
 
-    public static Menu getMenuByName(String name) {
+    public static Menu getMenuByName(final String name) {
         return Arrays.stream(values()).filter(food -> name.equals(food.getName()))
                 .findAny().orElseThrow(() -> new NoSuchElementException());
     }
