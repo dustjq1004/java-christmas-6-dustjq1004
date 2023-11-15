@@ -2,6 +2,8 @@ package christmas.model;
 
 import christmas.exception.CustomIllegalArgumentException;
 import christmas.exception.ErrorMessage;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -67,7 +69,8 @@ public class Order {
     }
 
     public Map<Menu, Integer> orderToMap() {
-        return order.stream()
+        Map<Menu, Integer> collect = order.stream()
                 .collect(Collectors.toMap(OrderedFood::getMenu, OrderedFood::getCount));
+        return Collections.unmodifiableMap(new HashMap<>(collect));
     }
 }
