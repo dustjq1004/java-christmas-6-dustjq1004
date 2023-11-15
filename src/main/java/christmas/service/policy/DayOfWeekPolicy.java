@@ -8,6 +8,8 @@ import java.util.List;
 
 public class DayOfWeekPolicy implements DiscountPolicy {
 
+    private static final String DETAIL_WEEK_DAY_NAME = "평일 할인";
+    private static final String DETAIL_WEEKEND_NAME = "주말 할인";
     private int startDay = 1;
     private int endDay = 31;
     private int baseDiscountPrice = 2023;
@@ -22,10 +24,10 @@ public class DayOfWeekPolicy implements DiscountPolicy {
         int discountPrice = baseDiscountPrice * count;
 
         if (foodType == FoodType.MAIN) {
-            reservation.addDiscountType("주말 할인", -discountPrice);
+            reservation.addDiscountType(DETAIL_WEEKEND_NAME, -discountPrice);
             return reservation;
         }
-        reservation.addDiscountType("평일 할인", -discountPrice);
+        reservation.addDiscountType(DETAIL_WEEK_DAY_NAME, -discountPrice);
         return reservation;
     }
 

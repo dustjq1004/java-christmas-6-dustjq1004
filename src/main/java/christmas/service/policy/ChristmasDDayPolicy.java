@@ -5,6 +5,7 @@ import christmas.model.Reservation;
 
 public class ChristmasDDayPolicy implements DiscountPolicy {
 
+    private static final String DETAIL_NAME = "크리스마스 디데이 할인";
     private int startDay = 1;
     private int endDay = 25;
     private int baseDiscountPrice = 1000;
@@ -14,7 +15,7 @@ public class ChristmasDDayPolicy implements DiscountPolicy {
     public Reservation calculatePrice(PreOrder preOrder, Reservation reservation) {
         if (preOrder.isContainDayRange(startDay, endDay)) {
             int discountPrice = calculateDiscountPrice(preOrder.getChristmasDday());
-            reservation.addDiscountType("크리스마스 디데이 할인", -discountPrice);
+            reservation.addDiscountType(DETAIL_NAME, -discountPrice);
         }
         return reservation;
     }

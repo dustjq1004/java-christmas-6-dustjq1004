@@ -6,15 +6,8 @@ import christmas.exception.ErrorMessage;
 
 public class ViewValidation {
 
-    private static final String MENU_PATTERN_REGEX = "\"^(\\\\w+)-(\\\\d+)$\"";
     private static final int MIN_DATE = 1;
     private static final int MAX_DATE = 31;
-
-    public static void validateMenuPattern(String menu) {
-        if (menu.matches(MENU_PATTERN_REGEX)) {
-            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
-        }
-    }
 
     public static void validateReservationDate(String date) {
         final int parsedDate = validateNumberFormat(date);

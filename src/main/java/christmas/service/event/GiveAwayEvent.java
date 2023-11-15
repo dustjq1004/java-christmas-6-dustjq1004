@@ -6,13 +6,14 @@ import christmas.model.Reservation;
 
 public class GiveAwayEvent {
 
-    private final Menu GIFT = Menu.CHAMPAGNE;
-    private final int BASE_PRICE = 120_000;
+    private static final String DETAIL_NAME = "증정 이벤트";
+    private static final Menu GIFT = Menu.CHAMPAGNE;
+    private static final int BASE_PRICE = 120_000;
 
 
     public void receiveGiveAwayIfConfirm(PreOrder preOrder, Reservation reservation) {
         if (confirmGiveAwayEvent(preOrder, reservation)) {
-            reservation.addDiscountType("증정 이벤트", -GIFT.getPrice());
+            reservation.addDiscountType(DETAIL_NAME, -GIFT.getPrice());
             reservation.addGiveAway(GIFT.getName());
         }
     }

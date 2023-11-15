@@ -5,20 +5,19 @@ import christmas.exception.ErrorMessage;
 import christmas.model.Menu;
 import christmas.model.Order;
 import christmas.model.OrderedFood;
-import christmas.validation.ViewValidation;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderGenerator {
 
-    private static final String COMMA = ",";
+    private static final String DELIMITER_COMMA = ",";
+    private static final String DELIMITER_DASH = "-";
 
     public static Order generateOrder(String target) {
         try {
             List<OrderedFood> order = new ArrayList<>();
-            for (String orderedFood : target.split(",")) {
-                ViewValidation.validateMenuPattern(orderedFood);
-                String[] details = orderedFood.split("-");
+            for (String orderedFood : target.split(DELIMITER_COMMA)) {
+                String[] details = orderedFood.split(DELIMITER_DASH);
                 Menu menu = Menu.getMenuByName(details[0]);
                 int menuCount = Integer.parseInt(details[1]);
                 order.add(new OrderedFood(menu, menuCount));
