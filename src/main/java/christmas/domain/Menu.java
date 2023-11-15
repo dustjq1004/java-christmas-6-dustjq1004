@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.constant.exception.ErrorMessage;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -33,7 +34,7 @@ public enum Menu {
 
     public static Menu getMenuByName(final String name) {
         return Arrays.stream(values()).filter(food -> name.equals(food.getName()))
-                .findAny().orElseThrow(() -> new NoSuchElementException());
+                .findAny().orElseThrow(() -> new NoSuchElementException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage()));
     }
 
     public FoodType getType() {
