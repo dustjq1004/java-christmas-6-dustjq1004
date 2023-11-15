@@ -46,10 +46,6 @@ public class Order {
         }
     }
 
-    public int getTotalOrderCount() {
-        return sumOrderCount(order);
-    }
-
     private int sumOrderCount(List<OrderedFood> order) {
         return order.stream().mapToInt(orderedFood -> orderedFood.getCount()).sum();
     }
