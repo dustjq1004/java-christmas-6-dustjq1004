@@ -7,10 +7,12 @@ public class PreOrder {
 
     private final int day;
     private final Order order;
+    EventCalendar eventCalendar;
 
     public PreOrder(int day, Order order) {
         this.day = day;
         this.order = order;
+        this.eventCalendar = new EventCalendar();
     }
 
     public int getTotalCountOfFoodType(FoodType foodType) {
@@ -22,17 +24,14 @@ public class PreOrder {
     }
 
     public int getChristmasDday() {
-        EventCalendar eventCalendar = new EventCalendar();
         return eventCalendar.getDDayChristmas(day);
     }
 
     public DayOfWeek getDayofWeek() {
-        EventCalendar eventCalendar = new EventCalendar();
         return eventCalendar.getDayOfWeek(day);
     }
 
     public boolean hasStar() {
-        EventCalendar eventCalendar = new EventCalendar();
         return eventCalendar.hasStar(day);
     }
 
