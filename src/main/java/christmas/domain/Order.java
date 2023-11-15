@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class Order {
 
     private final static int LIMIT_COUNT = 20;
+    private final static int MIN_COUNT = 1;
 
     private final List<OrderedFood> order;
 
@@ -35,7 +36,8 @@ public class Order {
     }
 
     private void validateCount(List<OrderedFood> order) {
-        if (sumOrderCount(order) > LIMIT_COUNT) {
+        final int menuTotalCount = sumOrderCount(order);
+        if (menuTotalCount < MIN_COUNT || LIMIT_COUNT < MIN_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
