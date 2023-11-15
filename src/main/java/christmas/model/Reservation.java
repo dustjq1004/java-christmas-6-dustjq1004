@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class Reservation {
 
+    private static final int PRICE_ZERO = 0;
+
     private final Map<String, Integer> discountDetails;
     private final List<String> giveAways;
 
@@ -32,7 +34,11 @@ public class Reservation {
     }
 
     public int getDiscountDetailsBy(String discountName) {
-        return discountDetails.get(discountName);
+        final Integer price = discountDetails.get(discountName);
+        if (price == null) {
+            return PRICE_ZERO;
+        }
+        return price.intValue();
     }
 
     public void addGiveAway(String name) {
