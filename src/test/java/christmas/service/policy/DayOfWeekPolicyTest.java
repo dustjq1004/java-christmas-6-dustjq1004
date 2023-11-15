@@ -28,7 +28,7 @@ class DayOfWeekPolicyTest {
         int 평일_할인 = reservation.getDiscountDetailsBy("평일 할인");
 
         // then
-        assertEquals(평일_할인, 4046);
+        assertEquals(평일_할인, -4046);
     }
 
     @Test
@@ -46,6 +46,6 @@ class DayOfWeekPolicyTest {
         int 주말_할인 = reservation.getDiscountDetailsBy("주말 할인");
 
         // then
-        assertEquals(주말_할인, 2023);
+        assertEquals(주말_할인, -2023);
     }
 }

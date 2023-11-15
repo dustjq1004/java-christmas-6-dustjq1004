@@ -33,14 +33,14 @@ class ChristmasDDayPolicyTest {
 
     static Stream<Arguments> reservationDayProvider() {
         return Stream.of(
-                arguments(2, 1100),
-                arguments(3, 1200),
-                arguments(4, 1300),
-                arguments(5, 1400),
-                arguments(6, 1500),
-                arguments(7, 1600),
-                arguments(8, 1700),
-                arguments(25, 3400),
+                arguments(2, -1100),
+                arguments(3, -1200),
+                arguments(4, -1300),
+                arguments(5, -1400),
+                arguments(6, -1500),
+                arguments(7, -1600),
+                arguments(8, -1700),
+                arguments(25, -3400),
                 arguments(26, 0)
         );
     }

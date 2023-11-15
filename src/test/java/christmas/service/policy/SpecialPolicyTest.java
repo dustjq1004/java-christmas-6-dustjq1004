@@ -23,7 +23,7 @@ class SpecialPolicyTest {
         int discountPrice = reservation.getDiscountDetailsBy("특별 할인");
 
         //then
-        Assertions.assertThat(discountPrice).isEqualTo(1000);
+        Assertions.assertThat(discountPrice).isEqualTo(-1000);
     }
 
     @Test
