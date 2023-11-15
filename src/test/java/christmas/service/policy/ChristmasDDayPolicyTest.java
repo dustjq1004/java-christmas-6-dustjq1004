@@ -2,8 +2,8 @@ package christmas.service.policy;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import christmas.model.PreOrder;
-import christmas.model.Reservation;
+import christmas.domain.PreOrder;
+import christmas.domain.Reservation;
 import christmas.utils.OrderGenerator;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;

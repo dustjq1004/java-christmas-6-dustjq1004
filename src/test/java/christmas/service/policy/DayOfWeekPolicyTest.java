@@ -2,10 +2,10 @@ package christmas.service.policy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.model.Menu;
-import christmas.model.Order;
-import christmas.model.PreOrder;
-import christmas.model.Reservation;
+import christmas.domain.Menu;
+import christmas.domain.Order;
+import christmas.domain.PreOrder;
+import christmas.domain.Reservation;
 import christmas.utils.OrderGenerator;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;

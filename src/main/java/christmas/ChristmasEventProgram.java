@@ -1,9 +1,9 @@
 package christmas;
 
 import christmas.controller.OrderController;
+import christmas.domain.Order;
+import christmas.domain.PreOrder;
 import christmas.dto.ReservationConfirm;
-import christmas.model.Order;
-import christmas.model.PreOrder;
 import christmas.utils.OrderGenerator;
 import christmas.utils.StringConverter;
 import christmas.view.InputView;

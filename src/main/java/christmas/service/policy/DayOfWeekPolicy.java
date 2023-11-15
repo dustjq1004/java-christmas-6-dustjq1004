@@ -1,8 +1,8 @@
 package christmas.service.policy;
 
-import christmas.model.FoodType;
-import christmas.model.PreOrder;
-import christmas.model.Reservation;
+import christmas.domain.FoodType;
+import christmas.domain.PreOrder;
+import christmas.domain.Reservation;
 import java.time.DayOfWeek;
 import java.util.List;
 

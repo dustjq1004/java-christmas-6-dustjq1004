@@ -1,6 +1,6 @@
 package christmas.dto;
 
-import christmas.model.Menu;
+import christmas.domain.Menu;
 import christmas.service.event.BadgeEvent;
 import java.util.List;
 import java.util.Map;

@@ -1,9 +1,9 @@
 package christmas.utils;
 
 import christmas.constant.exception.ErrorMessage;
-import christmas.model.Menu;
-import christmas.model.Order;
-import christmas.model.OrderedFood;
+import christmas.domain.Menu;
+import christmas.domain.Order;
+import christmas.domain.OrderedFood;
 import java.util.ArrayList;
 import java.util.List;
 

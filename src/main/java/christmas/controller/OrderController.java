@@ -1,8 +1,8 @@
 package christmas.controller;
 
+import christmas.domain.PreOrder;
+import christmas.domain.Reservation;
 import christmas.dto.ReservationConfirm;
-import christmas.model.PreOrder;
-import christmas.model.Reservation;
 import christmas.service.DiscountPolicyService;
 
 public class OrderController {

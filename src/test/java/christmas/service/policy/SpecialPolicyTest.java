@@ -1,7 +1,7 @@
 package christmas.service.policy;
 
-import christmas.model.PreOrder;
-import christmas.model.Reservation;
+import christmas.domain.PreOrder;
+import christmas.domain.Reservation;
 import christmas.utils.OrderGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

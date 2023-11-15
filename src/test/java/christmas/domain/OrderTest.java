@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.domain;
 
 import christmas.utils.OrderGenerator;
 import org.assertj.core.api.Assertions;

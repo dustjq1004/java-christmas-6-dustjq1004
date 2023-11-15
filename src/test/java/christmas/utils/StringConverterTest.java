@@ -1,7 +1,7 @@
 package christmas.utils;
 
-import christmas.model.Menu;
-import christmas.model.Order;
+import christmas.domain.Menu;
+import christmas.domain.Order;
 import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -1,7 +1,7 @@
 package christmas.service;
 
-import christmas.model.PreOrder;
-import christmas.model.Reservation;
+import christmas.domain.PreOrder;
+import christmas.domain.Reservation;
 import christmas.service.event.GiveAwayEvent;
 import christmas.service.policy.ChristmasDDayPolicy;
 import christmas.service.policy.DayOfWeekPolicy;

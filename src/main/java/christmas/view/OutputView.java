@@ -18,8 +18,8 @@ import static christmas.constant.exception.ViewMessage.OUTPUT_NOTIFICATION_4;
 import static christmas.constant.exception.ViewMessage.OUTPUT_ORDER_FORMAT;
 import static christmas.constant.exception.ViewMessage.OUTPUT_WELCOME;
 
+import christmas.domain.Menu;
 import christmas.dto.ReservationConfirm;
-import christmas.model.Menu;
 import christmas.service.event.BadgeEvent;
 import java.util.List;
 import java.util.Map;

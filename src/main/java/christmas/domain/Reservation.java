@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.domain;
 
 import christmas.service.event.BadgeEvent;
 import java.util.ArrayList;
