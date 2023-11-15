@@ -32,11 +32,7 @@ public class Reservation {
     }
 
     public int getDiscountDetailsBy(String discountName) {
-        Integer price = discountDetails.get(discountName);
-        if (price == null) {
-            return 0;
-        }
-        return price;
+        return discountDetails.get(discountName);
     }
 
     public void addGiveAway(String name) {
