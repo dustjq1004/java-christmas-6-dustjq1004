@@ -2,8 +2,6 @@ package christmas;
 
 import christmas.controller.OrderController;
 import christmas.dto.ReservationConfirm;
-import christmas.exception.CustomIllegalArgumentException;
-import christmas.exception.CustomNumberFormatException;
 import christmas.model.Order;
 import christmas.model.PreOrder;
 import christmas.utils.OrderGenerator;
@@ -45,7 +43,7 @@ public class ChristmasEventProgram {
     private Optional<Order> getClientOrder() {
         try {
             return Optional.of(OrderGenerator.generateOrder(inputView.readOrder()));
-        } catch (CustomIllegalArgumentException | CustomNumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();
         }
@@ -54,7 +52,7 @@ public class ChristmasEventProgram {
     private Optional<Integer> getClientReservationDate() {
         try {
             return Optional.of(StringConverter.convertToInteger(inputView.readDate()));
-        } catch (CustomIllegalArgumentException | CustomNumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return Optional.empty();
         }

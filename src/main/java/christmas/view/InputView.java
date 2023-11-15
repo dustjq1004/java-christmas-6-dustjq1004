@@ -1,7 +1,7 @@
 package christmas.view;
 
-import static christmas.view.ViewMessage.INPUT_ORDER_MENU;
-import static christmas.view.ViewMessage.INPUT_RESERVATION_DATE;
+import static christmas.constant.exception.ViewMessage.INPUT_ORDER_MENU;
+import static christmas.constant.exception.ViewMessage.INPUT_RESERVATION_DATE;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.validation.ViewValidation;

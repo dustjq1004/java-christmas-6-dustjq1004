@@ -1,7 +1,6 @@
 package christmas.model;
 
-import christmas.exception.CustomIllegalArgumentException;
-import christmas.exception.ErrorMessage;
+import christmas.constant.exception.ErrorMessage;
 
 public class OrderedFood {
 
@@ -18,7 +17,7 @@ public class OrderedFood {
 
     private void validation(Menu menu, int count) {
         if (count <= COUNT_ZERO) {
-            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 

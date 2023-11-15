@@ -1,4 +1,4 @@
-package christmas.exception;
+package christmas.constant.exception;
 
 public enum ErrorMessage {
 
@@ -9,7 +9,7 @@ public enum ErrorMessage {
 
     private String message;
 
-    ErrorMessage(String message) {
+    ErrorMessage(final String message) {
         this.message = MESSAGE_PREFIX + message;
     }
 

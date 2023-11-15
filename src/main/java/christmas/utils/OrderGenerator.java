@@ -1,7 +1,6 @@
 package christmas.utils;
 
-import christmas.exception.CustomIllegalArgumentException;
-import christmas.exception.ErrorMessage;
+import christmas.constant.exception.ErrorMessage;
 import christmas.model.Menu;
 import christmas.model.Order;
 import christmas.model.OrderedFood;
@@ -24,7 +23,7 @@ public class OrderGenerator {
             }
             return new Order(order);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 }

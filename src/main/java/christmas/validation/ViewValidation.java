@@ -1,8 +1,6 @@
 package christmas.validation;
 
-import christmas.exception.CustomIllegalArgumentException;
-import christmas.exception.CustomNumberFormatException;
-import christmas.exception.ErrorMessage;
+import christmas.constant.exception.ErrorMessage;
 
 public class ViewValidation {
 
@@ -13,7 +11,7 @@ public class ViewValidation {
         final int parsedDate = validateNumberFormat(date);
 
         if (parsedDate < MIN_DATE && MAX_DATE < parsedDate) {
-            throw new CustomIllegalArgumentException(ErrorMessage.DATE_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DATE_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -21,7 +19,7 @@ public class ViewValidation {
         try {
             return Integer.parseInt(date);
         } catch (NumberFormatException e) {
-            throw new CustomNumberFormatException(ErrorMessage.DATE_ERROR_MESSAGE.getMessage());
+            throw new NumberFormatException(ErrorMessage.DATE_ERROR_MESSAGE.getMessage());
         }
     }
 }

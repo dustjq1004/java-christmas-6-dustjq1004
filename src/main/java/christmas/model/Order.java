@@ -1,7 +1,6 @@
 package christmas.model;
 
-import christmas.exception.CustomIllegalArgumentException;
-import christmas.exception.ErrorMessage;
+import christmas.constant.exception.ErrorMessage;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -31,19 +30,19 @@ public class Order {
                 .filter((orderedFood) -> !orderedFood.compareTo(FoodType.DRINK))
                 .findFirst();
         if (first.isEmpty()) {
-            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateCount(List<OrderedFood> order) {
         if (sumOrderCount(order) > LIMIT_COUNT) {
-            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateDuplicate(List<OrderedFood> order) {
         if (order.size() != order.stream().distinct().count()) {
-            throw new CustomIllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MENU_ERROR_MESSAGE.getMessage());
         }
     }
 
